@@ -16,23 +16,27 @@ Prerequisites:
 2. Docker
 
 ```bash
+# Clone the repository
+git clone https://github.com/skillab-project/skillab-tracker-testathon.git
+
 # Create enviroment file
 cp .env.example.dev .env
 
-# Create python virtual enviroment
+# Create python virtual enviroment and install requirements
 python -m venv venv
 source ./venv/bin/activate
+pip install -r requirements.txt
 
 # Run postgresql and load dump using Docker
-docker compose up 
+docker compose up -d
 
-# Run tests
+# Run tests (it doesn't need the server running)
 python manage.py test
 
 # Run the server in development mode
 python manage.py runserver
 ```
 
-Visit the [Swagger Documentation page](http://localhost:8000/api/docs) to view the available endpoints.
+Visit the [Swagger Documentation page](http://localhost:8000/api/docs) to view the available endpoints when the server is running.
 
 For more information on how to conduct testing visit the [testing page](docs/testing.md).
