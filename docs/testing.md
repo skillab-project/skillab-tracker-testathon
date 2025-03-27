@@ -26,11 +26,11 @@ Accuracy testing refers to the process of evaluating how close a system's output
 Examples of test cases:
 * Verify the semantic meaning of extracted skills and occupations.
 
-<sub> Most likely this type of test can only be conducted manually and not programatically. </sub>
+<sub> Most likely this type of test can only be conducted manually and not automated. </sub>
 
 ### Logic Testing
 
-Ensure that the filtering logic implemented in the endpoints functions as expected.
+Ensure that the filtering logic implemented at the endpoints functions as expected.
 
 Examples of test cases:
 * AND/OR Logic: Confirm that the filtering operators (AND, OR) behave correctly when applied.
