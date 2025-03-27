@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css"
+    />
+    <link rel="shortcut icon" href="/media/logo.png" />
+    <title>Skillab Tracker API</title>
+  </head>
+  <body>
+    <div id="swagger-ui"></div>
+    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+    <script>
+      function transformOpenAPI(openApiObject) {
+        // Iterate through paths in the OpenAPI object
+        for (const path in openApiObject.paths) {
+          for (const method in openApiObject.paths[path]) {
+            const operation = openApiObject.paths[path][method];
+
+            // Transform query parameters for GET requests
+            if (method.toLowerCase() === "get" && operation.parameters) {
+              operation.parameters.forEach((param) => {
+                if (
+                  param.in === "query" &&
+                  param.schema &&
+                  param.schema.type === "array"
+                ) {
+                  param.style = "form";
+                  param.explode = true;
+                }
+              });
+            }
+
+            // Transform body for application/x-www-form-urlencoded
+            if (operation.requestBody) {
+              const content = operation.requestBody.content;
+
+              // Check for application/x-www-form-urlencoded
+              if (content["application/x-www-form-urlencoded"]) {
+                const formEncoding =
+                  content["application/x-www-form-urlencoded"];
+
+                // Assuming the schema is an object with properties
+                if (
+                  formEncoding.schema.type === "object" &&
+                  formEncoding.schema.properties
+                ) {
+                  Object.keys(formEncoding.schema.properties).forEach(
+                    (prop) => {
+                      const property = formEncoding.schema.properties[prop];
+
+                      if (property.type === "array") {
+                        // Set encoding for array properties
+                        formEncoding.encoding = formEncoding.encoding || {};
+                        formEncoding.encoding[prop] = {
+                          style: "form",
+                          explode: true,
+                        };
+                      }
+                    }
+                  );
+                }
+              }
+            }
+          }
+        }
+
+        return openApiObject;
+      }
+
+      (async () => {
+        const r = await fetch("/api/openapi.json");
+        const openapi = await r.json();
+        transformOpenAPI(openapi);
+
+        const ui = SwaggerUIBundle({
+          layout: "BaseLayout",
+          deepLinking: true,
+          spec: openapi,
+          dom_id: "#swagger-ui",
+          presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIBundle.SwaggerUIStandalonePreset,
+          ],
+        });
+      })();
+
+      // Uncheck all send empty values
+      document.addEventListener("click", () => {
+        const checkboxes = document.querySelectorAll("#include_empty_value");
+        checkboxes.forEach((c) => {
+          if (c.checked) c.click();
+          c.style.display = "none";
+          c.closest("label").style.display = "none";
+        });
+      });
+    </script>
+  </body>
+</html>

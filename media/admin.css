@@ -1,0 +1,63 @@
+html:root {
+    --primary: #f4800b;
+    --secondary: #f9ba0a;
+    --accent: #fefefe;
+    --primary-fg: #fefefe;
+
+    --body-fg: #1c244b;
+    --body-bg: #fefefe;
+    --body-quiet-color: #f9ba0a;
+    --body-medium-color: #f4800b;
+    --body-loud-color: #1c244b;
+
+    --header-color: #fefefe;
+    --header-branding-color: #1c244b;
+    --header-bg: #f4800b;
+    --header-link-color: #1c244b;
+
+    --breadcrumbs-fg: #f4800b;
+    --breadcrumbs-link-fg: #fefefe;
+    --breadcrumbs-bg: #1c244b;
+
+    --link-fg: #1c244b;
+    --link-hover-color: #1c244b;
+    --link-selected-fg: #f9ba0a;
+
+    --hairline-color: #e8e8e8;
+    --border-color: #ccc;
+
+    --error-fg: #ba2121;
+
+    --message-success-bg: #dfd;
+    --message-warning-bg: #ffc;
+    --message-error-bg: #ffefef;
+
+    --darkened-bg: #f8f8f8;
+    --selected-bg: #e4e4e4;
+    --selected-row: #f9ba0a;
+
+    --button-fg: #fefefe;
+    --button-bg: #1c244b;
+    --button-hover-bg: #f4800b;
+    --default-button-bg: #1c244b;
+    --default-button-hover-bg: #f9ba0a;
+    --close-button-bg: #747474;
+    --close-button-hover-bg: #333;
+    --delete-button-bg: #ba2121;
+    --delete-button-hover-bg: #a41515;
+
+    color-scheme: light;
+}
+
+.theme-toggle {
+    display: none;
+}
+
+.brand-image {
+    height: 100px;
+}
+
+.brand-image {
+    background-color: white;
+    border-radius: 10px;
+}
