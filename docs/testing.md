@@ -6,7 +6,7 @@
 
 ## Overview
 
-Programmatic testing is the preferred approach as it ensures reproducibility and can contribute to project maintenance, especially through merges. However, semantic aspects of the application that cannot be tested programmatically should be tested manually via the documentation page.
+Automated testing via coding is the preferred approach as it ensures reproducibility and aids project maintenance, particularly during merges. However, semantic aspects of the application that cannot be tested through code should be verified manually via the documentation page.
 
 ## Types of testing that can be conducted
 
@@ -55,11 +55,11 @@ Skills:
 
 <img src="course.png">
 
-### Programatic Testing
+### Automated Testing
 
 For writing tests, we recommend using **Django's test client** along with **Python's built-in unittest framework**. However, you are free to use your preferred testing framework and dependencies.
 
-#### Example of programmatic testing 
+#### Example of automated testing 
 This test validates that single-keyword searching works as expected in job listings and is part of the *Logic Testing*.
 
 You can also view the following test in `api/tests.py`.
