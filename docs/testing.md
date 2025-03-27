@@ -1,6 +1,6 @@
 # Skillab Tracker
 
-<img src="media/logo.png">
+<img src="../media/logo.png">
 
 ---
 
