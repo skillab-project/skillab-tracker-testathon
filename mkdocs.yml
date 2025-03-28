@@ -1,0 +1,6 @@
+site_name: SKILLAB Tracker (Slim version)
+repo_url: https://github.com/skillab-project/skillab-tracker-testathon
+
+nav:
+  - General Info: 'index.md'
+  - Testing: 'testing.md'
