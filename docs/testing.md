@@ -15,26 +15,35 @@ Automated testing via coding is the preferred approach as it ensures reproducibi
 Data Integrity Testing ensures that data remains accurate, consistent, unaltered, and free from unnecessary data or duplications during storage, retrieval, and processing.
 
 Examples of test cases:
-* Check for Duplicate Data in API Responses.
-* Validate Unique Entries.
-* Verify endpoints return the same information every time when identical filters are applied.
+* Check for Duplicate Data in API Responses. (Easy)
+* Validate Unique Entries. (Easy)
+* Verify endpoints return the same information every time when identical filters are applied. (Easy)
 
 ### Accuracy Testing
 
 Accuracy testing refers to the process of evaluating how close a system's output is to the correct or expected result.
 
 Examples of test cases:
-* Verify the semantic meaning of extracted skills and occupations.
+* Accurate set of extracted skills and occupations based on the information provided. (Hard)
+* Propagation and backpropagation returns expected results. (Medium)
 
-<sub> Most likely this type of test can only be conducted manually and not automated. </sub>
+<sub> Most likely the accuracy of the extracted skills can only be conducted manually and not automated. </sub>
+
+### Completeness Testing 
+
+Completeness testing ensures that all required functionalities, data, or conditions in a system are fully implemented and accounted for.
+
+Examples of test cases:
+* Missing skills while there is information to be extracted from. (Easy)
 
 ### Logic Testing
 
 Ensure that the filtering logic implemented at the endpoints functions as expected.
 
 Examples of test cases:
-* AND/OR Logic: Confirm that the filtering operators (AND, OR) behave correctly when applied.
-* Keyword Filtering: Verify that keyword-based filters return the correct results.
+* AND/OR Logic: Confirm that the filtering operators (AND, OR) behave correctly when applied. (Easy)
+* Keyword Filtering: Verify that keyword-based filters return the correct results.(Easy)
+* ID Filtering: Ensure that an id is present in the results when it is used for filtering. (Easy)
 
 ## Procedure
 
