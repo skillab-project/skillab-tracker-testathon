@@ -19,6 +19,9 @@ Prerequisites:
 # Clone the repository
 git clone https://github.com/skillab-project/skillab-tracker-testathon.git
 
+# Go into the created folder
+cd /skillab-tracker-testathon
+
 # Create enviroment file
 cp .env.example.dev .env
 
@@ -30,7 +33,7 @@ pip install -r requirements.txt
 # Run postgresql and load dump using Docker
 docker compose up -d
 
-# Run tests (it doesn't need the server running)
+# Run tests (the server doesn't need to be running)
 python manage.py test
 
 # Run the server in development mode
