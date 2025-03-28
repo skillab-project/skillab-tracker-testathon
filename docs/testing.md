@@ -1,7 +1,5 @@
 # Skillab Tracker
 
-<img src="../media/logo.png">
-
 ---
 
 ## Overview
@@ -62,7 +60,7 @@ Skills:
 * DevOps
 * coordinate security
 
-<img src="course.png">
+![course.png](course.png)
 
 ### Automated Testing
 
