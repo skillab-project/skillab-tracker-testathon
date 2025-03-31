@@ -18,5 +18,5 @@ class JobsTest(TestCase):
         for job in jobs:
             self.assertTrue(
                 keyword in (job["title"] + job["description"]).lower(),
-                f"Some job didn't include the filtered keyword in its title or description. Job ID: {job["id"]}",
+                f"Some job didn't include the filtered keyword in its title or description. Job ID: {job['id']}",
             )
