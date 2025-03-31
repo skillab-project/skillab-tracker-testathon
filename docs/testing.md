@@ -67,9 +67,10 @@ Skills:
 For writing tests, we recommend using **Django's test client** along with **Python's built-in unittest framework**. However, you are free to use your preferred testing framework and dependencies.
 
 #### Example of automated testing 
-This test validates that single-keyword searching works as expected in job listings and is part of the *Logic Testing*.
+The first test validates that single-keyword searching works as expected in job listings and is part of the *Logic Testing*.
+The second test ensures that there are no duplicates returned in the course listings and is part of the *Data Integrity Testing*.
 
-You can also view the following test in `api/tests.py`.
+You can also view the following tests in `api/tests.py`.
 
 ```python
 from unittest import TestCase
@@ -82,6 +83,8 @@ class JobsTest(TestCase):
         self.client = Client()
 
     def test_jobs_keyword(self):
+        #This test checks whether the job search API correctly filters jobs based on a given keyword, in this case "software".
+
         keyword = "software"
         response = self.client.post("/api/jobs", data={"keywords": [keyword]})
 
@@ -92,11 +95,48 @@ class JobsTest(TestCase):
         for job in jobs:
             self.assertTrue(
                 keyword in (job["title"] + job["description"]).lower(),
-                f"Some job didn't include the filtered keyword in its title or description. Job ID: {job["id"]}",
+                f"Some job didn't include the filtered keyword in its title or description. Job ID: {job['id']}",
             )
+
+    def test_courses_unique_ids(self):
+        # This test verifies that the `/api/courses` endpoint returns a list of courses 
+        # where each course has a unique ID (i.e., no duplicate courses are present).
+
+        course_ids = set()
+        page = 1
+
+        while True:
+            response = self.client.post(f"/api/courses?page={page}")
+            self.assertEqual(response.status_code, 200, f"Response wasn't ok for page {page}.")
+
+            data = response.json()
+            courses = data["items"]
+
+            if not courses:
+                break
+
+            for course in courses:
+                self.assertNotIn(course["id"], course_ids, f"Duplicate course ID found: {course['id']}")
+                course_ids.add(course["id"])
+
+            page += 1
+
 ```
 
 You can run the tests by executing the following command in your terminal: `python manage.py test` 
 
 Documentation sources for testing:
 * https://docs.djangoproject.com/en/5.1/topics/testing/ 
+
+### Proposed Tests:
+
+- **Validate Uniqueness of Entries:** Ensure that the combination of `source` and `source_id` is unique for each result.
+- **Consistency of Endpoint Responses:** Verify that queries with identical filters consistently return the same results across multiple requests.
+- **Propagation Behavior:** Validate that the propagation mechanism correctly returns all descendants (including children, grandchildren, and further descendants) of the selected skill or occupation.
+- **Back Propagation Behavior:** Confirm that back propagation returns all ancestors of the selected skill or occupation accurately.
+- **Extraction of Skills:** Ensure that when sufficient information is available, the relevant skills are correctly extracted.
+- **Logical Operator Functionality (AND/OR):** Validate that filtering operators (AND, OR) are correctly applied to different fields (e.g., keywords, skill IDs, occupation IDs) and produce accurate results.
+- **Keyword Filtering Accuracy:** Verify that filters based on keywords return the expected results.
+- **ID Filtering Integrity:** Ensure that when filtering by ID (e.g., skill ID), the ID is present in all results returned.
+- **Accuracy of Extracted Skills:** Confirm that the skills extracted based on the title and description match the results accurately.
+
