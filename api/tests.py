@@ -9,6 +9,7 @@ class JobsTest(TestCase):
 
     def test_jobs_keyword(self):
         keyword = "software"
+        print(keyword)
         response = self.client.post("/api/jobs", data={"keywords": [keyword]})
 
         self.assertEqual(response.status_code, 200, "Response wasn't ok.")
